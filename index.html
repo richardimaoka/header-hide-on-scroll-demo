@@ -12,13 +12,14 @@
   </head>
   <body>
     <header class="main-header">
-      <span class="icon material-symbols-outlined">menu</span>
+      <span id="menu" class="icon material-symbols-outlined">menu</span>
       <h1>My Awesome Header</h1>
-      <span class="icon material-symbols-outlined">search</span>
+      <span id="search" class="icon material-symbols-outlined">search</span>
     </header>
-    <!-- <div class="sticky">
-      <span class="icon material-symbols-outlined">menu</span>
-    </div> -->
+    <div class="fixed">
+      <span id="menu2" class="icon material-symbols-outlined">menu</span>
+    </div>
+
     <article>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
@@ -97,4 +98,12 @@
       </p>
     </article>
   </body>
+  <script>
+    function onClickAlert() {
+      window.alert("clicked");
+    }
+
+    const menu = document.getElementById("menu");
+    menu.addEventListener("click", onClickAlert);
+  </script>
 </html>
