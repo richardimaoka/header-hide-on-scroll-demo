@@ -17,27 +17,6 @@
 
     <main>
       <p>
-        Try to scroll this page: the header hides on scroll-down and shows on
-        scroll-up with CSS only.
-        <br /><br />
-        This demo uses
-        <a
-          href="https://drafts.csswg.org/css-conditional-5/#scrolled"
-          target="_top"
-          ><code>scroll-state(scrolled)</code> container queries</a
-        >
-        that respond to the most recent scroll direction.
-        <br />
-        Check it out in Chrome Canary with the experimental web platform
-        features flag flipped on.
-        <br /><br />
-        The demo is forked from
-        <a href="https://codepen.io/fcalderan/pen/LYKwyyd"
-          >the original by Fabrizio Calderan</a
-        >, which uses Scroll-Driven Animations.
-      </p>
-
-      <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -190,10 +169,32 @@
     </main>
   </body>
   <script>
-    function onClickAlert() {
-      window.alert("clicked");
-    }
-
     const header = document.getElementById("header");
+
+    let lastScrollY = window.scrollY;
+    document.addEventListener("scroll", function (e) {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY) {
+        // scrolling down
+        if (getComputedStyle(header).opacity === "1") {
+          header.animate([{ opacity: 1 }, { opacity: 0 }], {
+            duration: 300,
+            easing: "ease-in-out",
+            fill: "forwards",
+          });
+        }
+      } else if (currentScrollY < lastScrollY) {
+        // scrolling up
+        if (getComputedStyle(header).opacity === "0") {
+          header.animate([{ opacity: 0 }, { opacity: 1 }], {
+            duration: 300,
+            easing: "ease-in-out",
+            fill: "forwards",
+          });
+        }
+      }
+      lastScrollY = currentScrollY;
+    });
   </script>
 </html>
