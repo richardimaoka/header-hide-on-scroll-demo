@@ -175,7 +175,9 @@
     document.addEventListener("scroll", function (e) {
       const currentScrollY = window.scrollY;
 
-      if (currentScrollY > lastScrollY) {
+      if (window.scrollY < 1) {
+        // do nothing, at the top of the scroll container
+      } else if (currentScrollY > lastScrollY) {
         // scrolling down
         if (getComputedStyle(header).opacity === "1") {
           header.animate([{ opacity: 1 }, { opacity: 0 }], {
