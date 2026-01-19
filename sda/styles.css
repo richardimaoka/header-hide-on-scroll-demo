@@ -1,0 +1,90 @@
+body {
+  font-family: sans-serif;
+
+  max-width: 800px;
+  margin: auto;
+}
+
+.main-header {
+  /* CSS grid for header contents */
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  justify-items: center;
+  align-items: center;
+
+  padding: 8px;
+
+  /* Sticky header */
+  position: sticky;
+  top: 0;
+
+  /* Scroll-driven animation */
+  animation: hide-header linear forwards;
+  animation-timeline: scroll();
+  animation-range: 0 50px; /* Hides over the first 100px of scrolling */
+}
+
+.main-header > h1 {
+  font-size: 1.5rem;
+}
+
+.main-header > #menu {
+  animation: none;
+}
+
+span.icon {
+  font-size: 2rem;
+}
+
+article {
+  padding: 8px;
+}
+
+.fixed {
+  padding: 8px;
+
+  /* Sticky header */
+  position: sticky;
+  top: 0px;
+
+  animation: appear-header linear forwards;
+  animation-timeline: scroll();
+  animation-range: 0 150px; /* Hides over the first 100px of scrolling */
+}
+
+.fixed > .icon {
+  background-color: rgba(252, 252, 252, 0.8);
+  border-radius: 16px;
+}
+
+@keyframes hide-header {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  /* At 99% scroll, it's still visible but almost transparent */
+  99% {
+    opacity: 0;
+    visibility: visible;
+  }
+  /* At 100%, it flips to hidden so it can't be clicked or focused */
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes appear-header {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  79% {
+    opacity: 0;
+    visibility: visible;
+  }
+  /* At 100%, it flips to hidden so it can't be clicked or focused */
+  100% {
+    opacity: 1;
+  }
+}
